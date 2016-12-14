@@ -91,6 +91,11 @@ a {
   height: 30px;
   margin-top: 8px;
   margin-left: 800px;
+  background-image: url('http://www.bicycling.com/sites/all/themes/zeus_base/images/svg/search.svg');
+  background-position: 3px 5px;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  padding-left: 30px;
 }
 
 .form-style-6{
