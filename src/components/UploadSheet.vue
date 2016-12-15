@@ -8,11 +8,10 @@
   <div class="form-style-6">
     <h1>Upload File</h1>
     <form>
-      <input type="text" name="subject" placeholder="Subject" class="subject"/>
-      <input type="text" name="title" placeholder="Title" class="subject"/>
-      <input type="file" name="choosfile" placeholder="Choose File" class="choose" value="Choose File" accept="application/pdf"/>
-      <!--<input type="submit" value="Choose File" class="choosefile"/>-->
-      <input type="submit" value="Upload" class="canup"/><input type="submit" value="Cancle" class="canup"/>
+      <input type="text" name="subject" placeholder="Subject" class="subject" />
+      <input type="text" name="title" placeholder="Title" class="subject" />
+      <input type="file" name="choosfile" placeholder="Choose File" class="choose" value="Choose File" accept="application/pdf" v-on:change="createPDF"/>
+      <input type="submit" value="Upload" class="canup" v-on:change="upFile"/><input type="submit" value="Cancle" class="canup" />
     </form>
   </div>
 </div>
@@ -20,19 +19,20 @@
 
 <script>
 export default {
-  props: ['ChangePage'],
+  props: ['ChangePage', 'createPDF', 'upFile'],
   name: 'upload',
   data () {
-    return {
-    }
+    return {}
   }
 }
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Raleway');
-
 ul {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -45,6 +45,9 @@ li {
 }
 
 li a {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   display: block;
   color: white;
   text-align: center;
@@ -93,108 +96,105 @@ a {
   padding-left: 30px;
 }
 
-.form-style-6{
-    font-family: 'Raleway', sans-serif;
-    max-width: 500px;
-    height: 320px;
-    margin: 10px auto;
-    margin-top: 100px;
-    padding: 20px;
-    background: #F7F7F7;
-}
-.form-style-6 h1{
-    background: #000000;
-    padding: 20px 0;
-    font-size: 140%;
-    font-weight: 300;
-    text-align: center;
-    color: #fff;
-    margin: -16px -16px 16px -16px;
+.form-style-6 {
+  font-family: 'Raleway', sans-serif;
+  max-width: 500px;
+  height: 320px;
+  margin: 10px auto;
+  margin-top: 100px;
+  padding: 20px;
+  background: #F7F7F7;
 }
 
-.subject
-{
-    -webkit-transition: all 0.30s ease-in-out;
-    -moz-transition: all 0.30s ease-in-out;
-    -ms-transition: all 0.30s ease-in-out;
-    -o-transition: all 0.30s ease-in-out;
-    outline: none;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    width: 100%;
-    background: #fff;
-    margin-bottom: 4%;
-    border: 1px solid #ccc;
-    padding: 3%;
-    color: #555;
-    font: 95% 'Raleway', Helvetica, sans-serif;
+.form-style-6 h1 {
+  background: #000000;
+  padding: 20px 0;
+  font-size: 140%;
+  font-weight: 300;
+  text-align: center;
+  color: #fff;
+  margin: -16px -16px 16px -16px;
 }
+
+.subject {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 4%;
+  border: 1px solid #ccc;
+  padding: 3%;
+  color: #555;
+  font: 95% 'Raleway', Helvetica, sans-serif;
+}
+
 .subject input[type="text"]:focus,
-.subject select:focus
-{
-    padding: 3%;
-    border: 1px solid #000000;
+.subject select:focus {
+  padding: 3%;
+  border: 1px solid #000000;
 }
 
-.choose
-{
-    -webkit-transition: all 0.30s ease-in-out;
-    -moz-transition: all 0.30s ease-in-out;
-    -ms-transition: all 0.30s ease-in-out;
-    -o-transition: all 0.30s ease-in-out;
-    outline: none;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    width: 100%;
-    background: #fff;
-    margin-bottom: 4%;
-    border: 1px solid #ccc;
-    padding: 3%;
-    color: #555;
-    font: 95% 'Raleway', Helvetica, sans-serif;
+.choose {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 4%;
+  border: 1px solid #ccc;
+  padding: 3%;
+  color: #555;
+  font: 95% 'Raleway', Helvetica, sans-serif;
 }
+
 .choose input[type="text"]:focus,
-.choose select:focus
-{
-    padding: 3%;
-    border: 1px solid #000000;
-}
-.choosefile{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    width: 30%;
-    padding: 3%;
-    background: #000000;
-    margin-bottom: 5px;
-    color: #ffffff;
-    font-family: 'Raleway', sans-serif;
-    display: inline-block;
-}
-.choosefile:hover,
-.choosefile:hover{
-    background: #ffffff;
-    color: #000000;
+.choose select:focus {
+  padding: 3%;
+  border: 1px solid #000000;
 }
 
-.canup{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    width: 50%;
-    padding: 3%;
-    background: #000000;
-    margin-bottom: 5px;
-    color: #ffffff;
-    font-family: 'Raleway', sans-serif;
-    display: inline-block;
+.choosefile {
+  width: 30%;
+  padding: 3%;
+  background: #000000;
+  margin-bottom: 5px;
+  color: #ffffff;
+  font-family: 50% 'Raleway', sans-serif;
+  display: inline-block;
 }
+
+.choosefile:hover,
+.choosefile:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.canup {
+  width: 50%;
+  padding: 3%;
+  background: #000000;
+  margin-bottom: 5px;
+  color: #ffffff;
+  font-family: 'Raleway', sans-serif;
+  font-size: 100%;
+  display: inline-block;
+}
+
 .canup:hover,
-.canup:hover{
-    background: #ffffff;
-    color: #000000;
+.canup:hover {
+  background: #ffffff;
+  color: #000000;
 }
 
 .bgcolor {
@@ -204,9 +204,6 @@ a {
 }
 
 .choose input[type='file'] {
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   width: 30%;
   padding: 3%;
   background: #000000;
@@ -215,5 +212,4 @@ a {
   font-family: 'Raleway', sans-serif;
   display: inline-block;
 }
-
 </style>

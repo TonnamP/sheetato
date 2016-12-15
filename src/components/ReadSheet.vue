@@ -1,5 +1,5 @@
 <template>
-  <div class="bgcolor">
+<div class="bgcolor">
   <ul>
     <li><a class="active" @click="ChangePage(1)">Home</a></li>
     <li><input type="search" class="search"></li>
@@ -8,12 +8,12 @@
   <div class="form-style-6" v-for="name in subject">
     <h1>{{name}}</h1>
     <form>
-      <input type="submit" value="Read More >" class="canup"/>
+      <input type="submit" value="Read More >" class="canup" />
     </form>
   </div>
   <div>
     <br>
-    <input type="submit" name="previous" value=" << " class="pre"/>&nbsp;&nbsp;&nbsp;<input type="submit" name="next" value=" >> " class="next"/>
+    <input type="submit" name="previous" value=" << " class="pre" />&nbsp;&nbsp;&nbsp;<input type="submit" name="next" value=" >> " class="next" />
   </div>
 </div>
 </template>
@@ -27,8 +27,7 @@ export default {
       gotoupload: false
     }
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>
 
@@ -36,8 +35,10 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Raleway');
-
 ul {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -50,6 +51,9 @@ li {
 }
 
 li a {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   display: block;
   color: white;
   text-align: center;
@@ -63,6 +67,9 @@ li a:hover {
 }
 
 .active {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   background-color: #333;
 }
 
@@ -86,6 +93,9 @@ a {
 }
 
 .search {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   border-radius: 8px;
   width: 300px;
   height: 30px;
@@ -98,85 +108,107 @@ a {
   padding-left: 30px;
 }
 
-.form-style-6{
-    font-family: 'Raleway', sans-serif;
-    max-width: 400px;
-    height: 120px;
-    margin-top: 20px;
-    margin-left: 30px;
-    margin-right: 20px;
-    margin-right: 20px;
-    padding: 20px;
-    background: #F8F8FF;
-    box-shadow: 1px 1px 1px 0.5px #DCDCDC;
-    display: inline-block;
-    width: 350px;
+.form-style-6 {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+  max-width: 400px;
+  height: 150px;
+  margin-top: 20px;
+  margin-left: 60px;
+  margin-right: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  background: #F8F8FF;
+  box-shadow: 1px 1px 1px 0.5px #DCDCDC;
+  display: inline-block;
+  width: 350px;
 }
-.form-style-6 h1{
-    background: #000000;
-    padding: 20px 0;
-    font-size: 200%;
-    font-weight: 300;
-    text-align: center;
-    color: #fff;
-    margin: -16px -16px 16px -16px;
+
+.form-style-6 h1 {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #000000;
+  padding: 20px 0;
+  font-size: 200%;
+  font-weight: 300;
+  text-align: center;
+  color: #fff;
+  margin: -16px -16px 16px -16px;
 }
-.canup{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    width: 50%;
-    padding: 3%;
-    background: #000000;
-    margin-bottom: 5px;
-    color: #ffffff;
-    font-family: 'Raleway', sans-serif;
-    display: inline-block;
+
+.canup {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 50%;
+  padding: 3%;
+  background: #000000;
+  margin-bottom: 5px;
+  color: #ffffff;
+  font-family: 'Raleway', sans-serif;
+  display: inline-block;
+  font-size: 100%;
 }
+
 .canup:hover,
-.canup:hover{
-    background: #ffffff;
-    color: #000000;
+.canup:hover {
+  background: #ffffff;
+  color: #000000;
 }
+
 .bgcolor {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   background-color: #F5F5F5;
   width: 100%;
   height: 100%;
 }
 
 .pre {
-    background-color: #000000;
-    border: none;
-    color: white;
-    padding: 3px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    margin-left: 600px;
-    margin-top: 0.05px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 3px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 600px;
+  margin-top: 0.05px;
 }
+
 .pre:hover,
-.pre:hover{
-    background: #ffffff;
-    color: #000000;
+.pre:hover {
+  background: #ffffff;
+  color: #000000;
 }
 
 .next {
-    background-color: #000000;
-    border: none;
-    color: white;
-    padding: 3px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 3px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
 }
+
 .next:hover,
-.next:hover{
-    background: #ffffff;
-    color: #000000;
+.next:hover {
+  background: #ffffff;
+  color: #000000;
 }
 </style>
