@@ -67,12 +67,14 @@ export default {
         this.App = false
       }
     },
+    /* endChangePage */
     UploadFile () {
       var message = this.str
       ref.putString(message, 'base64').then(function (snapshot) {
         console.log(snapshot)
       })
     },
+    /* endUploadFile */
     createPDF (f) {
       var vm = this
       var files = f.target.files
@@ -87,14 +89,17 @@ export default {
       }
       reader.readAsDataURL(file)
     },
+    /* endcreatePDF */
     upFile () {
       console.log('Upload')
       var vm = this
       var message = vm.str
       ref.putString(message, 'base64').then(function (snapshot) {
+        console.log(snapshot)
         console.log('Uploaded a base64 string!')
       })
     }
+    /* endupFile */
   }
   /* endMethods */
 }
@@ -115,7 +120,6 @@ body {
 
 .button {
   background-color: #000000;
-  /* Green */
   border: none;
   border-radius: 8px;
   color: white;
