@@ -8,10 +8,10 @@
   <div class="form-style-6">
     <h1>Upload File</h1>
     <form>
-      <input type="text" name="subject" placeholder="Subject" class="subject" />
-      <input type="text" name="title" placeholder="Title" class="subject" />
-      <input type="file" name="choosfile" placeholder="Choose File" class="choose" value="Choose File" accept="application/pdf" v-on:change="createPDF"/>
-      <input type="submit" value="Upload" class="canup" v-on:change="upFile"/><input type="submit" value="Cancle" class="canup" />
+      <input type="text" name="subject" placeholder="Subject" class="subject" v-model="subject" />
+      <input type="text" name="title" placeholder="Title" class="subject" v-model="title"/>
+      <input type="file" name="choosfile" placeholder="Choose File" class="choose" value="Choose File" accept="application/pdf" v-on:change="selectFile"/>
+      <input value="Upload" class="canup1" @click="up"/> <input value="Cancle" class="canup2" />
     </form>
   </div>
 </div>
@@ -19,10 +19,26 @@
 
 <script>
 export default {
-  props: ['ChangePage', 'createPDF', 'upFile'],
+  props: ['ChangePage', 'upFile'],
   name: 'upload',
   data () {
-    return {}
+    return {
+      file: '',
+      subject: '',
+      title: ''
+    }
+  },
+  methods: {
+    selectFile (e) {
+      var files = e.target.files
+      this.file = files[0]
+    },
+    up () {
+      this.upFile(this.file, this.subject, this.title)
+      this.file = ''
+      this.subject = ''
+      this.title = ''
+    }
   }
 }
 </script>
@@ -180,23 +196,38 @@ a {
   color: #000000;
 }
 
-.canup {
-  width: 50%;
+.canup1 {
+  width: 45%;
   padding: 3%;
   background: #000000;
   margin-bottom: 5px;
+  margin-left: 20px;
   color: #ffffff;
   font-family: 'Raleway', sans-serif;
   font-size: 100%;
   display: inline-block;
 }
-
-.canup:hover,
-.canup:hover {
+.canup1:hover,
+.canup1:hover {
   background: #ffffff;
   color: #000000;
 }
-
+.canup2 {
+  width: 45%;
+  padding: 3%;
+  background: #000000;
+  margin-bottom: 5px;
+  margin-left: 0px;
+  color: #ffffff;
+  font-family: 'Raleway', sans-serif;
+  font-size: 100%;
+  display: inline-block;
+}
+.canup2:hover,
+.canup2:hover {
+  background: #ffffff;
+  color: #000000;
+}
 .bgcolor {
   background-color: #F5F5F5;
   width: 100vu;

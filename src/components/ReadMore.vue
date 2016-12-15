@@ -1,42 +1,21 @@
 <template>
-  <div class="bgcolor">
-    <ul>
-      <li><a class="active" @click="ChangePage(1)">Home</a></li>
-      <li><input type="search" class="search"></li>
-      <li><a @click="ChangePage(2)">Upload</a></li>
-    </ul>
-    <div class="" v-if="read === 0">
-      <div class="form-style-6" v-for="subject in subjects">
-        <h1>{{subject.name}}</h1>
-        <form>
-          <input type="button" value="Read More >" class="canup" @click="selectSubject = subject.name; read = 1"/>
-        </form>
-      </div>
-      <div>
-        <br>
-        <input type="submit" name="previous" value=" << " class="pre" />&nbsp;&nbsp;&nbsp;<input type="submit" name="next" value=" >> " class="next" />
-      </div>
-    </div>
-    <read-more v-if="read === 1" :select-subject="selectSubject" :sheets="sheets"><read-more>
+<div class="bgcolor">
+  <div class="" v-for="sheet in sheets" v-if="sheet.subject === selectSubject">
+    {{sheet.subject}}<br>
+    {{sheet.title}}<br>
+    <a target="_blank" :href="sheet.linkSheet">link</a>
   </div>
+</div>
 </template>
 
 <script>
-import ReadMore from './ReadMore'
 export default {
-  props: ['ChangePage', 'sheets', 'subjects'],
+  props: ['sheets', 'selectSubject'],
   data () {
     return {
-      // subject: ['Subject 1', 'Subject 2', 'Subject 3', 'Subject 4', 'Subject 5', 'Subject 6', 'Subject 7', 'Subject 8', 'Subject 9'],
-      selectSubject: '',
-      gotoupload: false,
-      read: 0
     }
   },
-  methods: {},
-  components: {
-    ReadMore
-  }
+  methods: {}
 }
 </script>
 

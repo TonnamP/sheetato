@@ -6,17 +6,16 @@
     <button type="button" name="UpLoad" class="button button" @click="ChangePage(2)">Upload</button>
   </div>
   <div v-show="gotoread" :change-page="ChangePage">
-    <read-sheet :change-page="ChangePage"></read-sheet>
+    <read-sheet :change-page="ChangePage" :sheets="sheets" :subjects="subjects"></read-sheet>
   </div>
   <div v-show="uploadsheet" :change-page="ChangePage">
-    <upload-sheet :change-page="ChangePage" :create-p-d-f="createPDF" :up-file="upFile"></upload-sheet>
+    <upload-sheet :change-page="ChangePage" :up-file="upFile"></upload-sheet>
   </div>
 </div>
 </template>
 
 <script>
 // Initialize Firebase
-/* global FileReader, btoa */
 import firebase from 'firebase'
 var config = {
   apiKey: 'AIzaSyCq9l98zJYY7iDJG0dWphAOULQEf39lmwM',
@@ -27,8 +26,9 @@ var config = {
 }
 firebase.initializeApp(config)
 var storage = firebase.storage()
-var storageRef = storage.ref()
-var ref = storageRef.child('images')
+var storageRef = storage.ref('sheets')
+var Sheets = firebase.database().ref('sheets')
+var Subjects = firebase.database().ref('subjects')
 import Hello from './components/Hello'
 import ReadSheet from './components/ReadSheet'
 import UploadSheet from './components/UploadSheet'
@@ -39,8 +39,33 @@ export default {
       gotoread: false,
       uploadsheet: false,
       App: true,
-      str: ''
+      str: '',
+      sheets: [],
+      subjects: []
     }
+  },
+  mounted () {
+    var vm = this
+    Sheets.on('child_added', function (data) {
+      var item = data.val()
+      item.id = data.key
+      vm.sheets.push(item)
+    })
+    Sheets.on('child_removed', function (data) {
+      var id = data.key
+      var index = vm.sheets.findIndex(sheet => sheet.id === id)
+      vm.sheets.splice(index, 1)
+    })
+    Subjects.on('child_added', function (data) {
+      var item = data.val()
+      item.id = data.key
+      vm.subjects.push(item)
+    })
+    Subjects.on('child_removed', function (data) {
+      var id = data.key
+      var index = vm.subjects.findIndex(subject => subject.id === id)
+      vm.subjects.splice(index, 1)
+    })
   },
   /* endData */
   components: {
@@ -68,35 +93,31 @@ export default {
       }
     },
     /* endChangePage */
-    UploadFile () {
-      var message = this.str
-      ref.putString(message, 'base64').then(function (snapshot) {
-        console.log(snapshot)
+    /* endUploadFile */
+    /* endcreatePDF */
+    upFile (file, subject, title) {
+      var vm = this
+      console.log('Uploading')
+      storageRef.child(Date.now() + '/' + file.name).put(file).then(function (snapshot) {
+        console.log(snapshot.downloadURL)
+        console.log('Upload a base64 string')
+        var data = {
+          linkSheet: snapshot.downloadURL,
+          subject: subject,
+          title: title
+        }
+        // หาว่าเคยมีชื่อวิชานี้หรือยังถ้ายังไม่มีให้เพิ่มชื่อวิชานี้เข้าไป
+        var index = vm.subjects.findIndex(s => s.name === subject)
+        console.log(index)
+        if (index === -1) {
+          vm.addSubject(subject)
+        }
+        Sheets.push(data)
       })
     },
-    /* endUploadFile */
-    createPDF (f) {
-      var vm = this
-      var files = f.target.files
-      var file = files[0]
-      var reader = new FileReader()
-      reader.onload = (e) => {
-        vm.str = e.target.result
-        console.log(vm.str)
-        console.log('test')
-        vm.str = btoa(vm.str)
-        console.log(vm.str)
-      }
-      reader.readAsDataURL(file)
-    },
-    /* endcreatePDF */
-    upFile () {
-      console.log('Upload')
-      var vm = this
-      var message = vm.str
-      ref.putString(message, 'base64').then(function (snapshot) {
-        console.log(snapshot)
-        console.log('Uploaded a base64 string!')
+    addSubject (name) {
+      Subjects.push({
+        name: name
       })
     }
     /* endupFile */
