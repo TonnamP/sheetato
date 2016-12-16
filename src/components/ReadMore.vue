@@ -1,16 +1,15 @@
 <template>
 <div class="bgcolor">
-  <div class="" v-for="sheet in sheets" v-if="sheet.subject === selectSubject">
-    {{sheet.subject}}<br>
-    {{sheet.title}}<br>
-    <a target="_blank" :href="sheet.linkSheet">link</a>
+  <div class="" v-for="sheet in sheets" v-if="sheet.subject === selectSubject" class="form-style-6">
+    <h1>{{sheet.title}}</h1><br>
+    <h3><a target="_blank" :href="sheet.linkSheet">Click to read sheet</a></h3>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-  props: ['sheets', 'selectSubject'],
+  props: ['sheets', 'selectSubject', 'ChangePage'],
   data () {
     return {
     }
@@ -79,6 +78,9 @@ li {
 a {
   color: #42b983;
 }
+.center {
+  font-size: 50px;
+}
 
 .search {
   -webkit-box-sizing: border-box;
@@ -124,9 +126,16 @@ a {
   font-weight: 300;
   text-align: center;
   color: #fff;
-  margin: -16px -16px 16px -16px;
+  margin: -16px -10px 0px -10px;
 }
-
+.h3 h3{
+  font-size: 100%;
+  font-weight: 300;
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+  margin-left: 50px;
+}
 .canup {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -151,7 +160,7 @@ a {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  background-color: #F5F5F5;
+  background-color: #ffffff;
   width: 100%;
   height: 100%;
 }

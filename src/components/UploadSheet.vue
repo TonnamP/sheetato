@@ -1,25 +1,22 @@
 <template>
 <div class="bgcolor">
   <ul>
-    <li><a class="active" @click="ChangePage(1)">Home</a></li>
-    <li><input type="search" class="search"></li>
+    <li><a class="active">Upload Sheet</a></li>
     <li><a @click="ChangePage(1)">Read</a></li>
   </ul>
   <div class="form-style-6">
     <h1>Upload File</h1>
-    <form>
       <input type="text" name="subject" placeholder="Subject" class="subject" v-model="subject" />
       <input type="text" name="title" placeholder="Title" class="subject" v-model="title"/>
-      <input type="file" name="choosfile" placeholder="Choose File" class="choose" value="Choose File" accept="application/pdf" v-on:change="selectFile"/>
-      <input value="Upload" class="canup1" @click="up"/> <input value="Cancle" class="canup2" />
-    </form>
+      <input type="file" name="choosfile" placeholder="Choose File" class="choose" accept="application/pdf" v-on:change="selectFile">
+      <button class="canup1" @click="up">Upload</button> <button value="Cancle" class="canup2">Cancle</button>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-  props: ['ChangePage', 'upFile'],
+  props: ['ChangePage', 'upFile', 'sheets'],
   name: 'upload',
   data () {
     return {
@@ -104,7 +101,7 @@ a {
   width: 300px;
   height: 30px;
   margin-top: 8px;
-  margin-left: 820px;
+  margin-left: 750px;
   background-image: url('http://www.bicycling.com/sites/all/themes/zeus_base/images/svg/search.svg');
   background-position: 3px 5px;
   background-repeat: no-repeat;
@@ -229,7 +226,7 @@ a {
   color: #000000;
 }
 .bgcolor {
-  background-color: #F5F5F5;
+  background-color: #ffffff;
   width: 100vu;
   height: 100vh;
 }

@@ -1,21 +1,25 @@
 <template>
   <div class="bgcolor">
     <ul>
-      <li><a class="active" @click="ChangePage(1)">Home</a></li>
-      <li><input type="search" class="search"></li>
-      <li><a @click="ChangePage(2)">Upload</a></li>
+      <li class="active" :style="{'display':invis}">Subject</li>
+      <li class="center">
+        <div class="" v-for="sheet in sheets" v-if="sheet.subject === selectSubject">
+          {{sheet.subject}}
+        </div>
+      </li>
+      <li><a @click="ChangePage(2)" :style="{'display':invis}">Upload</a></li>
     </ul>
     <div class="" v-if="read === 0">
       <div class="form-style-6" v-for="subject in subjects">
         <h1>{{subject.name}}</h1>
         <form>
-          <input type="button" value="Read More >" class="canup" @click="selectSubject = subject.name; read = 1"/>
+          <input type="button" value="Read More >" class="canup" @click="selectSubject = subject.name; read = 1; invis = 'none'"/>
         </form>
       </div>
-      <div>
+      <!-- <div>
         <br>
         <input type="submit" name="previous" value=" << " class="pre" />&nbsp;&nbsp;&nbsp;<input type="submit" name="next" value=" >> " class="next" />
-      </div>
+      </div> -->
     </div>
     <read-more v-if="read === 1" :select-subject="selectSubject" :sheets="sheets"><read-more>
   </div>
@@ -30,7 +34,8 @@ export default {
       // subject: ['Subject 1', 'Subject 2', 'Subject 3', 'Subject 4', 'Subject 5', 'Subject 6', 'Subject 7', 'Subject 8', 'Subject 9'],
       selectSubject: '',
       gotoupload: false,
-      read: 0
+      read: 0,
+      invis: ''
     }
   },
   methods: {},
@@ -66,7 +71,9 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 14px;
+  margin-left: 1000px;
+  margin-top: 5px;
   text-decoration: none;
 }
 
@@ -76,9 +83,8 @@ li a:hover {
 }
 
 .active {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  margin-top: 5px;
+  font-size: 32px;
   background-color: #333;
 }
 
@@ -95,6 +101,16 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
+  color: #ffffff;
+}
+
+.center {
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0 10px;
+  margin-top: 4px;
+  font-size: 27px;
+  color: #ffffff;
 }
 
 a {
@@ -109,12 +125,13 @@ a {
   width: 300px;
   height: 30px;
   margin-top: 8px;
-  margin-left: 800px;
+  margin-left: 500px;
   background-image: url('http://www.bicycling.com/sites/all/themes/zeus_base/images/svg/search.svg');
   background-position: 3px 5px;
   background-repeat: no-repeat;
   background-size: 20px;
   padding-left: 30px;
+  padding-right: 50px;
 }
 
 .form-style-6 {
@@ -172,7 +189,7 @@ a {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  background-color: #F5F5F5;
+  background-color: #ffffff;
   width: 100%;
   height: 100%;
 }
