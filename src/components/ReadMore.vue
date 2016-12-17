@@ -1,25 +1,29 @@
 <template>
 <div class="bgcolor">
   <div class="" v-for="sheet in sheets" v-if="sheet.subject === selectSubject" class="form-style-6">
-    <h1>{{sheet.title}}</h1><br>
+    <h1>{{sheet.title}}</h1>
     <h3><a target="_blank" :href="sheet.linkSheet">Click to read sheet</a></h3>
   </div>
+  <div>
+    <button type="submit" name="button" align="center" @click="setRead(0)" class="button">Back</button>
+    <read-sheet v-if="read === 0"></read-sheet>
 </div>
 </template>
 
 <script>
+import ReadSheet from './ReadSheet'
 export default {
-  props: ['sheets', 'selectSubject', 'ChangePage'],
+  props: ['sheets', 'selectSubject', 'ChangePage', 'read', 'setRead'],
   data () {
     return {
     }
   },
-  methods: {}
+  methods: {},
+  components: {
+    ReadSheet
+  }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 ul {
@@ -106,7 +110,7 @@ a {
   max-width: 400px;
   height: 150px;
   margin-top: 20px;
-  margin-left: 60px;
+  margin-left: 100px;
   margin-right: 20px;
   margin-right: 20px;
   padding: 20px;
@@ -207,5 +211,24 @@ a {
 .next:hover {
   background: #ffffff;
   color: #000000;
+}
+
+.button {
+  background-color: #000000;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 16px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 60px 700px;
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width: 80px;
+  height: 50px;
 }
 </style>

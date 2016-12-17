@@ -15,7 +15,6 @@
 </template>
 
 <script>
-// Initialize Firebase
 import firebase from 'firebase'
 var config = {
   apiKey: 'AIzaSyCq9l98zJYY7iDJG0dWphAOULQEf39lmwM',
@@ -67,7 +66,6 @@ export default {
       vm.subjects.splice(index, 1)
     })
   },
-  /* endData */
   components: {
     Hello,
     ReadSheet,
@@ -92,9 +90,6 @@ export default {
         this.App = false
       }
     },
-    /* endChangePage */
-    /* endUploadFile */
-    /* endcreatePDF */
     upFile (file, subject, title) {
       var vm = this
       console.log('Uploading')
@@ -120,7 +115,6 @@ export default {
         name: name
       })
     }
-    /* endupFile */
   }
   /* endMethods */
 }

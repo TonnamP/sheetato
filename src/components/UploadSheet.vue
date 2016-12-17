@@ -2,7 +2,7 @@
 <div class="bgcolor">
   <ul>
     <li><a class="active">Upload Sheet</a></li>
-    <li><a @click="ChangePage(1)">Read</a></li>
+    <li><a @click="ChangePage(1)" class="active1">Read</a></li>
   </ul>
   <div class="form-style-6">
     <h1>Upload File</h1>
@@ -69,11 +69,19 @@ li a {
 }
 
 li a:hover {
-  background-color: #F8F8FF;
-  color: #000000;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.active1 {
+  background-color: #333;
+  margin-left: 1200px;
+  font-size: 18;
 }
 
 .active {
+  margin-top: 5px;
+  font-size: 10px;
   background-color: #333;
 }
 

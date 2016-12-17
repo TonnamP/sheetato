@@ -1,28 +1,19 @@
 <template>
-  <div class="bgcolor">
-    <ul>
-      <li class="active" :style="{'display':invis}">Subject</li>
-      <li class="center">
-        <div class="" v-for="sheet in sheets" v-if="sheet.subject === selectSubject">
-          {{sheet.subject}}
-        </div>
-      </li>
-      <li><a @click="ChangePage(2)" :style="{'display':invis}">Upload</a></li>
-    </ul>
-    <div class="" v-if="read === 0">
-      <div class="form-style-6" v-for="subject in subjects">
-        <h1>{{subject.name}}</h1>
-        <form>
-          <input type="button" value="Read More >" class="canup" @click="selectSubject = subject.name; read = 1; invis = 'none'"/>
-        </form>
-      </div>
-      <!-- <div>
-        <br>
-        <input type="submit" name="previous" value=" << " class="pre" />&nbsp;&nbsp;&nbsp;<input type="submit" name="next" value=" >> " class="next" />
-      </div> -->
+<div class="bgcolor">
+  <ul>
+    <li class="active">Read Sheet</li>
+    <li><a @click="ChangePage(2)" :style="{'display':invis}" class="active1">Upload</a></li>
+  </ul>
+  <div class="" v-if="read === 0">
+    <div class="form-style-6" v-for="subject in subjects">
+      <h1>{{subject.name}}</h1>
+      <form>
+        <input type="button" value="Read More >" class="canup" @click="selectSubject = subject.name; read = 1;" />
+      </form>
     </div>
-    <read-more v-if="read === 1" :select-subject="selectSubject" :sheets="sheets"><read-more>
   </div>
+  <read-more v-if="read === 1" :select-subject="selectSubject" :sheets="sheets" :read="read" :set-read="setRead"></read-more>
+</div>
 </template>
 
 <script>
@@ -31,22 +22,21 @@ export default {
   props: ['ChangePage', 'sheets', 'subjects'],
   data () {
     return {
-      // subject: ['Subject 1', 'Subject 2', 'Subject 3', 'Subject 4', 'Subject 5', 'Subject 6', 'Subject 7', 'Subject 8', 'Subject 9'],
       selectSubject: '',
       gotoupload: false,
-      read: 0,
-      invis: ''
+      read: 0
     }
   },
-  methods: {},
+  methods: {
+    setRead (b) {
+      this.read = b
+    }
+  },
   components: {
     ReadMore
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 ul {
@@ -86,6 +76,12 @@ li a:hover {
   margin-top: 5px;
   font-size: 32px;
   background-color: #333;
+}
+
+.active1 {
+  background-color: #333;
+  margin-left: 1090px;
+  margin-top: 10px;
 }
 
 h1,
@@ -142,7 +138,7 @@ a {
   max-width: 400px;
   height: 150px;
   margin-top: 20px;
-  margin-left: 60px;
+  margin-left: 100px;
   margin-right: 20px;
   margin-right: 20px;
   padding: 20px;
